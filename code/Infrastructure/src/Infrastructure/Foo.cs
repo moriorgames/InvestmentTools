@@ -1,9 +1,11 @@
 ﻿namespace Infrastructure;
 
-public class Foo
+public class Foo(int value)
 {
+    private int _value = value;
+
     public bool Execute()
     {
-        return true;
+        return 12 == _value;
     }
 }
