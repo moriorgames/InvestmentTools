@@ -157,3 +157,25 @@ fix(api): return 409 on duplicate price snapshot
 chore(ci): enable test coverage report
 ```
 
+## 10) Frontend — Avalonia Desktop (cross-platform)
+
+Decisión: adoptamos Avalonia UI para un cliente de escritorio que muestre las gráficas e interactúe con la base de datos local/remota. Motivos:
+
+- Multiplataforma real (macOS/Windows/Linux) con un único código .NET.
+- Sin despliegue web: ejecución offline, arranque rápido y distribución sencilla (posible single-file/self-contained).
+- Ecosistema de gráficas maduro (ScottPlot, LiveCharts2).
+
+```
+InvestmentTools.sln
+  └─ code/
+      └─ Desktop/
+         └─ src/
+            └─ Desktop/   # Avalonia .NET 8 (MVVM)
+```
+
+### Creación (Rider)
+
+- Instalar plugin AvaloniaRider.
+- Instalar plantillas: dotnet new install Avalonia.Templates.
+- Rider → File → New... → New Project → Avalonia .NET MVVM App (.NET 8) → nombre Desktop.
+
