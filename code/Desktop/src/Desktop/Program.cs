@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Infrastructure.Persistence;
+using Microsoft.Extensions.Configuration;
 
 namespace Desktop;
 
@@ -13,16 +14,23 @@ internal static class Program
     public static void Main(string[] args)
     {
         using var host = Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((ctx, cfg) =>
+            {
+                var env = ctx.HostingEnvironment;
+                cfg.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                cfg.AddEnvironmentVariables();
+            })
             .ConfigureServices((ctx, services) =>
             {
                 var cs = ctx.Configuration.GetConnectionString("InvestmentToolsDb")
                          ?? throw new InvalidOperationException("Missing ConnectionStrings:InvestmentToolsDb");
 
-                services.AddDbContext<EntityFrameworkContext>(opt =>
+                services.AddDbContextFactory<EntityFrameworkContext>(opt =>
                     opt.UseMySql(cs, ServerVersion.AutoDetect(cs)));
             })
             .Build();
-
+        
         BuildAvaloniaApp(host.Services).StartWithClassicDesktopLifetime(args);
     }
 

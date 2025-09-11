@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Desktop.Views;
 
@@ -14,11 +15,13 @@ public partial class MainWindow : Window
         Opened += async (_, __) =>
         {
             var sp = ((App)Application.Current!).Services;
-            var db = sp.GetRequiredService<EntityFrameworkContext>();
 
-            var canConnect = await db.Database.CanConnectAsync();
-            Title = canConnect
-                ? "InvestmentTools — DB: connected"
+            var factory = sp.GetRequiredService<IDbContextFactory<EntityFrameworkContext>>();
+            await using var db = await factory.CreateDbContextAsync();
+
+            var ok = await db.Database.CanConnectAsync();
+            Title = ok 
+                ? "InvestmentTools — DB: connected" 
                 : "InvestmentTools — DB: not reachable";
         };
     }
