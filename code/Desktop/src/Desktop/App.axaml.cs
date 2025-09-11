@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
+using System;
 using System.Linq;
 using Avalonia.Markup.Xaml;
 using Desktop.ViewModels;
@@ -11,6 +12,8 @@ namespace Desktop;
 
 public partial class App : Application
 {
+    public IServiceProvider Services { get; init; } = default!;
+
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);

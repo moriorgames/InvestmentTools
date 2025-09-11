@@ -1,21 +1,43 @@
-﻿using Avalonia;
 using System;
+using Avalonia;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Infrastructure.Persistence;
+using Microsoft.Extensions.Configuration;
 
 namespace Desktop;
 
-sealed class Program
+internal static class Program
 {
-    // Initialization code. Don't use any Avalonia, third-party APIs or any
-    // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
-    // yet and stuff might break.
     [STAThread]
-    public static void Main(string[] args) => BuildAvaloniaApp()
-        .StartWithClassicDesktopLifetime(args);
+    public static void Main(string[] args)
+    {
+        using var host = Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((ctx, cfg) =>
+            {
+                var env = ctx.HostingEnvironment;
+                cfg.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                cfg.AddEnvironmentVariables();
+            })
+            .ConfigureServices((ctx, services) =>
+            {
+                var cs = ctx.Configuration.GetConnectionString("InvestmentToolsDb")
+                         ?? throw new InvalidOperationException("Missing ConnectionStrings:InvestmentToolsDb");
 
-    // Avalonia configuration, don't remove; also used by visual designer.
-    public static AppBuilder BuildAvaloniaApp()
-        => AppBuilder.Configure<App>()
+                services.AddDbContextFactory<EntityFrameworkContext>(opt =>
+                    opt.UseMySql(cs, ServerVersion.AutoDetect(cs)));
+            })
+            .Build();
+        
+        BuildAvaloniaApp(host.Services).StartWithClassicDesktopLifetime(args);
+    }
+
+    public static AppBuilder BuildAvaloniaApp(IServiceProvider sp) =>
+        AppBuilder.Configure(() => new App { Services = sp })
             .UsePlatformDetect()
             .WithInterFont()
             .LogToTrace();
 }
+
