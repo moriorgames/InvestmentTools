@@ -1,14 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "code\Infrastructure\src\Infrastructure\Infrastructure.csproj", "{BBDD1891-047A-4BE3-923C-E8CEC0321A2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "code\Infrastructure\src\Infrastructure.csproj", "{BBDD1891-047A-4BE3-923C-E8CEC0321A2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Test", "code\Infrastructure\test\Infrastructure.Test\Infrastructure.Test.csproj", "{40EF7B50-30B1-4FC9-88B1-8C408F60E5F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Test", "code\Infrastructure\test\Infrastructure.Test.csproj", "{40EF7B50-30B1-4FC9-88B1-8C408F60E5F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "code\Domain\src\Domain\Domain.csproj", "{E4FA26A3-690F-4BC7-8BC9-AAB3DFE5028C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "code\Domain\src\Domain.csproj", "{E4FA26A3-690F-4BC7-8BC9-AAB3DFE5028C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Test", "code\Domain\test\Domain.Test\Domain.Test.csproj", "{EB4347D8-3C57-4C0B-B532-31441C68D10C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Test", "code\Domain\test\Domain.Test.csproj", "{EB4347D8-3C57-4C0B-B532-31441C68D10C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "code\Desktop\src\Desktop\Desktop.csproj", "{5CB22AA5-43A7-484B-96F2-5EE3E8D16EE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "code\Desktop\src\Desktop.csproj", "{5CB22AA5-43A7-484B-96F2-5EE3E8D16EE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

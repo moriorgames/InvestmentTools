@@ -36,7 +36,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\Domain\src\Domain\Domain.csproj" />
-        <ProjectReference Include="..\..\..\Infrastructure\src\Infrastructure\Infrastructure.csproj" />
+        <ProjectReference Include="..\..\Domain\src\Domain.csproj" />
+        <ProjectReference Include="..\..\Infrastructure\src\Infrastructure.csproj" />
     </ItemGroup>
 </Project>
