@@ -46,7 +46,9 @@ URL repositorio de GITHUB: https://github.com/moriorgames/InvestmentTools
 **Capas/Proyectos**
 ```
 InvestmentTools.sln
-  ├─ code/
+  └─ code/
+      ├─ Desktop/          # Frontal UI con Avalonia .NET 8 (MVVM)
+      │      ├─ src/
       ├─ Domain/           # Entidades DDD, VOs, reglas de dominio, eventos
       │      ├─ src/
       │      └─ test/ 
@@ -62,6 +64,8 @@ InvestmentTools.sln
 - **Domain** no referencia a nadie.
 - **Application** depende solo de **Domain**.
 - **Infrastructure** implementa los **puertos** definidos en **Domain**.
+- **Desktop** es la interacción con el usuario UI.
+
 
 **Beneficios**
 - Aislamiento del dominio.
@@ -169,8 +173,7 @@ Decisión: adoptamos Avalonia UI para un cliente de escritorio que muestre las g
 InvestmentTools.sln
   └─ code/
       └─ Desktop/
-         └─ src/
-            └─ Desktop/   # Avalonia .NET 8 (MVVM)
+         └─ src/   # Avalonia .NET 8 (MVVM)
 ```
 
 ### Creación (Rider)
@@ -179,3 +182,11 @@ InvestmentTools.sln
 - Instalar plantillas: dotnet new install Avalonia.Templates.
 - Rider → File → New... → New Project → Avalonia .NET MVVM App (.NET 8) → nombre Desktop.
 
+
+## 11) User Secrets
+
+```
+$ dotnet user-secrets init --project code/Desktop/src/Desktop.csproj
+$ dotnet user-secrets init --project code/Infrastructure/src/Infrastructure.csproj
+$ dotnet user-secrets set "ConnectionStrings:InvestmentToolsDb" "..." --project code/Desktop/src/Desktop.csproj 
+```
