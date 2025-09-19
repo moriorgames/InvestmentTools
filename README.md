@@ -118,6 +118,7 @@ InvestmentTools.sln
 **Migraciones**: `dotnet ef migrations add Init --project src/InvestmentTools.Infrastructure --startup-project src/InvestmentTools.WebApi`
 
 ```shell
+dotnet ef migrations add Init --project code/Infrastructure/src/Infrastructure.csproj
 dotnet ef migrations add Init_<Indicator> --project code/Infrastructure/src/Infrastructure.csproj --startup-project code/Infrastructure/src/Infrastructure.csproj
 ```
 
