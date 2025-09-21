@@ -112,7 +112,15 @@ InvestmentTools.sln
 }
 ```
 
+### Migraciones
+
+
 **Migraciones**: `dotnet ef migrations add Init --project src/InvestmentTools.Infrastructure --startup-project src/InvestmentTools.WebApi`
+
+```shell
+dotnet ef migrations add Init --project code/Infrastructure/src/Infrastructure.csproj
+dotnet ef database update --project code/Infrastructure/src/Infrastructure.csproj
+```
 
 ---
 
@@ -185,8 +193,12 @@ InvestmentTools.sln
 
 ## 11) User Secrets
 
+```shell
+dotnet user-secrets init --project code/Desktop/src/Desktop.csproj
+dotnet user-secrets init --project code/Infrastructure/src/Infrastructure.csproj
 ```
-$ dotnet user-secrets init --project code/Desktop/src/Desktop.csproj
-$ dotnet user-secrets init --project code/Infrastructure/src/Infrastructure.csproj
-$ dotnet user-secrets set "ConnectionStrings:InvestmentToolsDb" "..." --project code/Desktop/src/Desktop.csproj 
+
+Example:
+```
+dotnet user-secrets set "ConnectionStrings:InvestmentToolsDb" "..." --project code/Desktop/src/Desktop.csproj  
 ```
