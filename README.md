@@ -119,9 +119,8 @@ InvestmentTools.sln
 
 ```shell
 dotnet ef migrations add Init --project code/Infrastructure/src/Infrastructure.csproj
-dotnet ef migrations add Init_<Indicator> --project code/Infrastructure/src/Infrastructure.csproj --startup-project code/Infrastructure/src/Infrastructure.csproj
+dotnet ef database update --project code/Infrastructure/src/Infrastructure.csproj
 ```
-
 
 ---
 

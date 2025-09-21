@@ -11,7 +11,8 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<EntityFram
         var configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            .AddJsonFile($"appsettings.Development.json", optional: true) // por defecto
+            .AddJsonFile($"appsettings.Development.json", optional: true)
+            .AddUserSecrets<DesignTimeDbContextFactory>(optional: true)
             .AddEnvironmentVariables()
             .Build();
 
